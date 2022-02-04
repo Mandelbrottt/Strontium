@@ -103,7 +103,7 @@ namespace Strontium
     MouseClickEvent(const int mouseCode);
     ~MouseClickEvent() = default;
 
-    inline int getButton() { return this->mouseCode; }
+    inline int getButton() const { return this->mouseCode; }
   protected:
     int mouseCode;
   };
@@ -117,7 +117,7 @@ namespace Strontium
     MouseReleasedEvent(const int mouseCode);
     ~MouseReleasedEvent() = default;
 
-    inline int getButton() { return this->mouseCode; }
+    inline int getButton() const { return this->mouseCode; }
   protected:
     int mouseCode;
   };

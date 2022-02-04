@@ -243,6 +243,12 @@ namespace Strontium
       case EventType::KeyPressedEvent:
         this->onKeyPress(*(static_cast<KeyPressedEvent*>(&event)));
         break;
+      case EventType::MouseClickEvent:
+        this->onMouseClick(*(static_cast<MouseClickEvent*>(&event)));
+        break;
+      case EventType::MouseReleasedEvent:
+        this->onMouseReleased(*(static_cast<MouseReleasedEvent*>(&event)));
+        break;
       default: break;
     }
   }
@@ -273,8 +279,26 @@ namespace Strontium
 
     int keyCode = keyEvent.getKeyCode();
 
-    if (keyCode == SR_KEY_P && appWindow->isKeyPressed(SR_KEY_LEFT_ALT))
+    if (keyCode == SR_KEY_P 
+		&& appWindow->isKeyPressed(SR_KEY_LEFT_ALT) 
+		&& !appWindow->isMouseClicked(SR_MOUSE_BUTTON_RIGHT))
       this->swap();
+  }
+
+  void EditorCamera::onMouseClick(const MouseClickEvent& mouseEvent)
+  {
+	int mouseButton = mouseEvent.getButton();
+
+  	if (mouseButton == SR_MOUSE_BUTTON_RIGHT && isStationary())
+  	  this->swap();
+  }
+
+  void EditorCamera::onMouseReleased(const MouseReleasedEvent& mouseEvent)
+  {
+	int mouseButton = mouseEvent.getButton();
+
+  	if (mouseButton == SR_MOUSE_BUTTON_RIGHT && !isStationary())
+  	  this->swap();
   }
 
   // Swap the camera types.

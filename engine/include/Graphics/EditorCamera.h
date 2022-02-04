@@ -79,7 +79,9 @@ namespace Strontium
     // Event handling functions.
     void onMouseScroll(MouseScrolledEvent &mouseEvent);
     void onKeyPress(KeyPressedEvent &keyEvent);
-
+    void onMouseClick(const MouseClickEvent& mouseEvent);
+    void onMouseReleased(const MouseReleasedEvent& mouseEvent);
+	
     // Variables for camera position, front and top vectors.
     glm::vec3 position;
     glm::vec3 pivot;
